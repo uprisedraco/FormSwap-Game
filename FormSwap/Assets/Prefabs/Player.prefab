@@ -157,4 +157,4 @@ MonoBehaviour:
   lowScale: {x: 1, y: 0.5, z: 4}
   midScale: {x: 1, y: 2, z: 2}
   highScale: {x: 1, y: 3, z: 1}
-  forceSpeed: 50
+  forceSpeed: 15

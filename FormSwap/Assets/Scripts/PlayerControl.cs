@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
         {
             PlayerMove();
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetMouseButtonDown(0))
             {
                 ChangeForm();
             }
@@ -71,5 +71,13 @@ public class PlayerControl : MonoBehaviour
     private void PlayerMove()
     {
         rb.AddForce(Vector3.right * forceSpeed * Time.deltaTime, ForceMode.Impulse);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            playerAlive = false;
+        }
     }
 }
