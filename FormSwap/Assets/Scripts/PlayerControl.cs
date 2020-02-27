@@ -27,7 +27,13 @@ public class PlayerControl : MonoBehaviour
 
     private Rigidbody rb;
     
-    private bool playerAlive;
+    public bool playerAlive;
+
+    [SerializeField]
+    private GameObject deadMenu;
+
+    [SerializeField]
+    private GameObject button;
 
     void Awake()
     {
@@ -36,16 +42,21 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
         if (playerAlive)
         {
             PlayerMove();
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 ChangeForm();
             }
+        }
+        else
+        {
+            deadMenu.SetActive(true);
+            button.SetActive(false);
         }
     }
 
@@ -70,7 +81,12 @@ public class PlayerControl : MonoBehaviour
 
     private void PlayerMove()
     {
-        rb.AddForce(Vector3.right * forceSpeed * Time.deltaTime, ForceMode.Impulse);
+        rb.velocity = new Vector3(forceSpeed, 0, 0);
+        forceSpeed += 0.01f;
+        if(forceSpeed > 25f)
+        {
+            forceSpeed = 25f;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -79,5 +95,10 @@ public class PlayerControl : MonoBehaviour
         {
             playerAlive = false;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
     }
 }
