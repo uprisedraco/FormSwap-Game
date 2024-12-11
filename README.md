@@ -1,4 +1,4 @@
 # FormSwap-Game
-Игра в которой нужно менять форму куба для прохода через препядствия.
+Game where you need to change the shape of a cube to pass through obstacles.
 
-Изменить форму куба - E.
+Change cube shape - E.
